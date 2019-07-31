@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from'react-dom';
-import Card from './Card';
+import Images from './draggables';
+import { DragDropContext } from 'react-beautiful-dnd';
+import data from './data';
 
 class App extends React.Component {
 
-    render(){
+    state = data;
+
+    render() {
         return (
-            <Card packName="Pack Dancing"
-                  packSubtitle="Indicado para todas as idades"
-                  packDescription="Luzes disco. Som. DJ. Efeitos de fumo."
-                  packDuration="2h de festa"
-                  packPrice="120"/>
+           <DragDropContext >
+               <Images />
+           </DragDropContext>
         );
     }
 }
