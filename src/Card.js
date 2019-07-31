@@ -14,7 +14,7 @@ class Card extends React.Component {
                             {this.props.packSubtitle}
                         </div>
                         <div className="description">
-                            {this.props.packDescription}
+                            "whaddup"
                         </div>
                     </div>
                     <div className="ui vertical animated button" tabIndex="0">
