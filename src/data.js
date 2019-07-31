@@ -1,10 +1,10 @@
 const data = {
     images: [
-        {'img-1': { id: 'img-1', content: 'cat' }},
-        {'img-2': { id: 'img-2', content: 'tiger' }},
-        {'img-3': { id: 'img-3', content: 'giraffe' }},
-        {'img-4': { id: 'img-4', content: 'dog' }},
-        {'img-5': { id: 'img-5', content: 'bear' }},
+        {content: 'cat'},
+        {content: 'tiger' },
+        {content: 'giraffe' },
+        {content: 'dog' },
+        {content: 'bear' },
     ],
     droppables: {
         'drop-1': { id: 'drop-1', img: 'giraffe' },

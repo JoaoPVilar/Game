@@ -1,25 +1,34 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import CardStyles from './Card';
+import Grid from '@material-ui/core/Grid';
+
+const styles =
+    makeStyles({
+        root: {
+            flexGrow: 1,
+          },  
+    });
 
 class Images extends React.Component {
- /*  <div>
-                {this.props.imageSrc.map((image, index) => {
-                    return <CardStyles />
-                })
-                }
-            </div> */
-    render() {
-        const elem = this.props.imageSrc.map((image, index) => {
-            return <CardStyles key={index} image={image} />
-        });
 
-        console.log(this.props.imageSrc)
+    render() {
+
+        
+        const elem = this.props.imageSrc.map((image, index) => {
+            
+            console.log(image.id)
+            return (
+            <Grid key={index} item>
+                <CardStyles key={index} image={image} index={index + 1}/>
+            </Grid>);
+        });
 
         return (
           
-           <div>
+            <Grid container style={{flexGrow: 1}} spacing={2}>
                {elem}
-           </div>
+           </Grid>
         );
     }
 }
