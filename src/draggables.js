@@ -1,25 +1,27 @@
 import React from 'react';
-import { createStyles, withStyles } from '@material-ui/core/styles';
 import CardStyles from './Card';
 
-const styles = (theme) =>
-    createStyles({
-
-    });
-
 class Images extends React.Component {
+ /*  <div>
+                {this.props.imageSrc.map((image, index) => {
+                    return <CardStyles />
+                })
+                }
+            </div> */
+    render() {
+        const elem = this.props.imageSrc.map((image, index) => {
+            return <CardStyles key={index} image={image} />
+        });
 
+        console.log(this.props.imageSrc)
 
-    render(){
         return (
-            <CardStyles packName="Pack Dancing"
-            packSubtitle="Indicado para todas as idades"
-            packDescription="Luzes disco. Som. DJ. Efeitos de fumo."
-            packDuration="2h de festa"
-            packPrice="120"/>
+          
+           <div>
+               {elem}
+           </div>
         );
     }
 }
 
-const ImagesStyles = withStyles(styles)(Images);
-export default ImagesStyles;
+export default Images;

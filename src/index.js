@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from'react-dom';
-import Images from './draggables';
+import Images from './Draggables';
+import Droppables from './Droppables';
 import { DragDropContext } from 'react-beautiful-dnd';
 import data from './data';
 
@@ -11,7 +12,8 @@ class App extends React.Component {
     render() {
         return (
            <DragDropContext >
-               <Images />
+               <Images imageSrc={this.state.images}/>
+               <Droppables />
            </DragDropContext>
         );
     }
