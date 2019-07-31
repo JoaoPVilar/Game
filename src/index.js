@@ -9,11 +9,21 @@ class App extends React.Component {
 
     state = data;
 
+    onDragEnd = (result) => {
+        console.log(result);
+        const draggedImg = result.draggableId;
+        const droppedId = result.destination.droppableId.split('-')[1];
+
+        if (draggedImg === droppedId) {
+            
+        }
+    };
+
     render() {
         return (
-           <DragDropContext >
+           <DragDropContext onDragEnd={this.onDragEnd}>
                <Images imageSrc={this.state.images}/>
-               <Droppables />
+               <Droppables drops={this.state.droppables}/>
            </DragDropContext>
         );
     }
