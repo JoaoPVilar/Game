@@ -1,11 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Cat from './cat.png';
-import Dog from './dog.png';
-import Giraffe from './giraffe.png';
-import Bear from './bear.png';
-import Tiger from './tiger.jpg';
 import classNames from 'classnames';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import Card from '@material-ui/core/Card';
@@ -30,46 +25,29 @@ const styles =
 
 class Images extends React.Component {
 
-    getImages = (type) => {
-        const classes = styles();
-        switch(type) {
-            case 'cat':
-                return <img src={Cat} alt={'cat'} className={classes.img}/>;
-
-            case 'dog':
-                return <img src={Dog} alt={'dog'} className={classes.img}/>;
-
-            case 'bear':
-                return <img src={Bear} alt={'bear'} className={classes.img}/>;
-
-            case 'giraffe':
-                return <img src={Giraffe} alt={'giraffe'} className={classes.img}/>;
-
-            case 'tiger':
-                return <img src={Tiger} alt={'tiger'} className={classes.img}/>;
-
-            default:
-                return <div />;
-                
-        }
+    getImagebyId = (id) => {
+        return this.props.imageSrc.find((img, ind) => {
+            return (ind + 1) === id;
+        });
     }
 
     loadItems = () => {
         const classes = styles();
-        
-        return this.props.imageSrc.map((image, index) => {
-            
+
+        return this.props.imageIds.map((image, index) => {
+            const img = this.getImagebyId(image);
+
             return (
-                <Draggable draggableId={`${image.content}`} 
+                <Draggable draggableId={`${img.content}`} 
                 index={parseInt(index, 10)}
-                key={index} >
+                key={`${img.content}`} >
                 {(provided, snapshot) => (
                 <Card className={classes.card}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
                     <div className={classNames("card")}>
-                        {this.getImages(image.content)}
+                        {this.props.getImages(img.content)}
                     </div>   
                 </Card>)}
                 
