@@ -16,6 +16,7 @@ const styles =
         }, 
         card: {
             minWidth: 100,
+            maxHeight: '100px',
             width: '5%',
             height: '130%',
             marginLeft: '40px',
@@ -40,7 +41,7 @@ class Images extends React.Component {
             return (
                 <Draggable draggableId={`${img.content}`} 
                 index={parseInt(index, 10)}
-                key={`${img.content}`} >
+                key={`${img.content}`} style={{maxHeight: '100px'}}>
                 {(provided, snapshot) => (
                 <Card className={classes.card}
                     ref={provided.innerRef}
@@ -61,11 +62,11 @@ class Images extends React.Component {
 
         return (
           
-            <Droppable droppableId={'droppable'} direction={'horizontal'}>
+            <Droppable droppableId={'droppable'} direction={'horizontal'} >
                 {(provided, snapshot) => (
                     <div ref={provided.innerRef}
                         {...provided.droppableProps}>
-                        <Grid container style={{flexGrow: 1}} spacing={2}>
+                        <Grid container spacing={2}>
                             {this.loadItems()}
                         </Grid>
                         {provided.placeholder}

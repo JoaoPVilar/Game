@@ -38,8 +38,6 @@ const styles =
 
         const type = (index) => {
             const r = props.dropsIds[index + 1];
-
-            console.log('r:', r);
             return r;
         }
 
@@ -57,8 +55,8 @@ const styles =
                 case 'giraffe':
                     return <img src={Giraffe} alt={'giraffe'} className={classes.img}/>;
     
-                case 'tiger':
-                    return <img src={Tiger} alt={'tiger'} className={classes.img}/>;
+                case 'lion':
+                    return <img src={Tiger} alt={'lion'} className={classes.img}/>;
     
                 default:
                     return <div />;
@@ -68,7 +66,7 @@ const styles =
 
         return (
 
-            <Grid container style={{flexGrow: 1}} spacing={2}>
+            <Grid container spacing={2} style={{marginTop: '-50px', maxHeight: '100px'}}>
                 {props.drops.map((dropImg, index) => {
                     return (
                         <Droppable droppableId={`droppable-${dropImg.img}-${index + 1}`}
@@ -77,9 +75,7 @@ const styles =
                                 <Card className={classes.card} ref={provided.innerRef}
                                     {...provided.droppableProps}>
                                         <CardContent className={classes.drop} >
-                                            {type(index) 
-                                                ? getImages(type(index)) : <h3>{dropImg.img}</h3>}
-                                            
+                                            {type(index) ? getImages(type(index)) : <h3>{dropImg.img}</h3>}
                                         </CardContent>
                                     {provided.placeholder}
                                 </Card>

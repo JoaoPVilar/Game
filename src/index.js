@@ -10,6 +10,7 @@ import Giraffe from './giraffe.png';
 import Bear from './bear.png';
 import Tiger from './tiger.jpg';
 import { makeStyles } from '@material-ui/core/styles';
+import Confetti from 'react-confetti';
 
 const styles =
     makeStyles({
@@ -27,6 +28,10 @@ const styles =
             marginLeft: '40px',
             marginTop: '40px'
         },
+        container: {
+            maxWidth: '500px',
+            margin: 'auto',
+        }
     });
 
 class App extends React.Component {
@@ -35,12 +40,12 @@ class App extends React.Component {
 
     onDragEnd = (result) => {
 
-        const draggedImg = result.draggableId;
-        const droppedId = result.destination.droppableId.split('-')[1];
-
         if (!result.destination) {
             return;
         }
+
+        const draggedImg = result.draggableId;
+        const droppedId = result.destination.droppableId.split('-')[1];
 
         if (draggedImg === droppedId) {
             const newImageIds = Array.from(this.state.imageIds);
@@ -48,7 +53,6 @@ class App extends React.Component {
 
             const newDropsIds = Array.from(this.state.droppablesIds);
             const dropId = parseInt(result.destination.droppableId.split('-')[2], 10);
-            /* newDropsIds.splice(dropId, 0, draggedImg); */
             newDropsIds[dropId] = draggedImg;
 
             const newState = {
@@ -83,8 +87,8 @@ class App extends React.Component {
             case 'giraffe':
                 return <img src={Giraffe} alt={'giraffe'} className={classes.img}/>;
 
-            case 'tiger':
-                return <img src={Tiger} alt={'tiger'} className={classes.img}/>;
+            case 'lion':
+                return <img src={Tiger} alt={'lion'} className={classes.img}/>;
 
             default:
                 return <div />;
@@ -92,14 +96,41 @@ class App extends React.Component {
         }
     }
 
+    isValid = () => {
+        for (let i = 0; i < this.state.images.length; i++) {
+            if (!this.state.droppablesIds[i + 1]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     render() {
+
         return (
-           <DragDropContext onDragEnd={this.onDragEnd}>
-               <Images imageSrc={this.state.images} imageIds={this.state.imageIds}
-                    getImages={this.getImages}/>
-               <Droppables drops={this.state.droppables} dropsIds={this.state.droppablesIds}
-                    getImages={this.getImages}/>
+            <div style={{marginLeft: '200px', marginTop: '100px'}}>
+            <h1 style={{backgroundColor: 'darkgrey', display: 'inline-block', marginBottom: '30px'}}>
+                Corresponde as imagens aos sitios certos!
+            </h1>
+           <DragDropContext onDragEnd={this.onDragEnd} >
+               {this.isValid() ?
+                    <Confetti
+                        width={1300}
+                        height={800}
+                    />
+                :
+                <div />
+                }
+                 <div style={{marginLeft: '40px'}}>
+                        <Images imageSrc={this.state.images} imageIds={this.state.imageIds}
+                                getImages={this.getImages}/>
+                    </div>
+                    <Droppables drops={this.state.droppables} dropsIds={this.state.droppablesIds}
+                        getImages={this.getImages}/>
+               
            </DragDropContext>
+           </div>
         );
     }
 }

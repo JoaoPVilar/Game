@@ -1,7 +1,7 @@
 const data = {
     images: [
         {content: 'cat'},
-        {content: 'tiger' },
+        {content: 'lion' },
         {content: 'giraffe' },
         {content: 'dog' },
         {content: 'bear' },
@@ -11,7 +11,7 @@ const data = {
         { img: 'cat' },
         { img: 'bear' },
         { img: 'dog' },
-        { img: 'tiger' }
+        { img: 'lion' }
     ],
     imageIds: [1, 2, 3, 4, 5],
     droppablesIds: []
