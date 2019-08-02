@@ -4,11 +4,11 @@ import { makeStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
-import Cat from './cat.png';
-import Dog from './dog.png';
-import Giraffe from './giraffe.png';
-import Bear from './bear.png';
-import Tiger from './tiger.jpg';
+import Cat from './images/cat.png';
+import Dog from './images/dog.png';
+import Giraffe from './images/giraffe.png';
+import Bear from './images/bear.png';
+import Tiger from './images/tiger.jpg';
 
 const styles =
     makeStyles({

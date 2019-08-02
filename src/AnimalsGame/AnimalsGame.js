@@ -1,15 +1,15 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
-import Images from '../Draggables';
-import Droppables from '../Droppables';
+import Images from './Draggables';
+import Droppables from './Droppables';
 import { DragDropContext } from 'react-beautiful-dnd';
 import data from './data';
-import Cat from './cat.png';
-import Dog from '../AnimalsGame/dog.png';
-import Giraffe from './giraffe.png';
-import Bear from '../AnimalsGame/bear.png';
-import Tiger from './tiger.jpg';
+import Cat from './images/cat.png';
+import Dog from './images/dog.png';
+import Giraffe from './images/giraffe.png';
+import Bear from './images/bear.png';
+import Tiger from './images/tiger.jpg';
 import Confetti from 'react-confetti';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
@@ -46,10 +46,45 @@ const styles =
 
 class AnimalsGame extends React.Component {
 
-        state = {
+    constructor(props) {
+        super(props);
+
+        let initialDrops = data.droppables;
+        let initialImageIds = data.imageIds;
+        initialDrops = this.shuffle(initialDrops);
+        initialImageIds = this.shuffle(initialImageIds);
+
+        const initialData = {
+            ...data,
+            droppables: initialDrops,
+            imageIds: initialImageIds
+        }
+
+        this.state = {
             corrAnimalsClick: false,
-            imgData: data
+            imgData: initialData
         };
+    }
+
+    shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+      
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+      
+        return array;
+      }
+        
 
         isValid = () => {
             for (let i = 0; i < this.state.imgData.images.length; i++) {
@@ -137,7 +172,14 @@ class AnimalsGame extends React.Component {
         render() {
 
             return (
-                    <div style={{marginLeft: '200px', marginTop: '100px'}}>
+                    <div style={{position: 'absolute',
+                    margin: 'auto',
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                    width: '1200px',
+                    height: '-10px'}}>
                     <IconButton style={{width: '60px', height: '60px', zIndex: 9999}} aria-label="back"
                         onClick={this.props.backButtonClick}>
                         <ArrowBack 
