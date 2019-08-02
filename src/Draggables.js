@@ -26,29 +26,23 @@ const styles =
 
 class Images extends React.Component {
 
-    getImagebyId = (id) => {
-        return this.props.imageSrc.find((img, ind) => {
-            return (ind + 1) === id;
-        });
-    }
 
     loadItems = () => {
         const classes = styles();
 
         return this.props.imageIds.map((image, index) => {
-            const img = this.getImagebyId(image);
 
             return (
-                <Draggable draggableId={`${img.content}`} 
+                <Draggable draggableId={`${image}`} 
                 index={parseInt(index, 10)}
-                key={`${img.content}`} style={{maxHeight: '100px'}}>
+                key={`${image}`} style={{maxHeight: '100px'}}>
                 {(provided, snapshot) => (
                 <Card className={classes.card}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
                     <div className={classNames("card")}>
-                        {this.props.getImages(img.content)}
+                        {this.props.getImages(image)}
                     </div>   
                 </Card>)}
                 

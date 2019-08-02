@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import Cat from './cat.png';
@@ -86,4 +86,4 @@ class Cards extends React.Component {
 }
 
 const CardStyles = withStyles(styles)(Cards);
-export default CardStyles;
+export default CardStyles; */

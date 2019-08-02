@@ -13,7 +13,7 @@ const data = {
         { img: 'dog' },
         { img: 'lion' }
     ],
-    imageIds: [1, 2, 3, 4, 5],
+    imageIds: ['cat', 'lion', 'giraffe', 'dog', 'bear'],
     droppablesIds: []
 }
 
