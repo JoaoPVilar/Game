@@ -4,11 +4,6 @@ import { makeStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
-import Cat from './images/cat.png';
-import Dog from './images/dog.png';
-import Giraffe from './images/giraffe.png';
-import Bear from './images/bear.png';
-import Tiger from './images/tiger.jpg';
 
 const styles =
     makeStyles({
@@ -41,29 +36,6 @@ const styles =
             return r;
         }
 
-        const getImages = (type) => {
-            switch(type) {
-                case 'cat':
-                    return <img src={Cat} alt={'cat'} className={classes.img}/>;
-    
-                case 'dog':
-                    return <img src={Dog} alt={'dog'} className={classes.img}/>;
-    
-                case 'bear':
-                    return <img src={Bear} alt={'bear'} className={classes.img}/>;
-    
-                case 'giraffe':
-                    return <img src={Giraffe} alt={'giraffe'} className={classes.img}/>;
-    
-                case 'lion':
-                    return <img src={Tiger} alt={'lion'} className={classes.img}/>;
-    
-                default:
-                    return <div />;
-                    
-            }
-        }
-
         return (
 
             <Grid container spacing={2} style={{marginTop: '-50px', maxHeight: '100px'}}>
@@ -75,7 +47,7 @@ const styles =
                                 <Card className={classes.card} ref={provided.innerRef}
                                     {...provided.droppableProps}>
                                         <CardContent className={classes.drop} >
-                                            {type(index) ? getImages(type(index)) : <h3>{dropImg.img}</h3>}
+                                            {type(index) ? props.getImages(type(index)) : <h3>{dropImg.img}</h3>}
                                         </CardContent>
                                     {provided.placeholder}
                                 </Card>

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import AnimalsStyles from './AnimalsGame/AnimalsGame';
+import OrderGame from './OrderGame/OrderGame';
 
 const styles =
     makeStyles(theme => ({
@@ -29,34 +30,52 @@ export default function Menu() {
     const classes = styles();
 
         const [showMenu, setShowMenu] = React.useState(true);
+        const [game, setGame] = React.useState(0);
 
-        const corrAnimalsClick = (event) => {
+        const gameClick = (event, gameNumber) => {
             setShowMenu(!showMenu);
+            setGame(gameNumber);
         }
 
         const backButtonClick = (event) => {
             setShowMenu(!showMenu);
         }
 
+        const showGame = () => {
+            switch(game) {
+                case 1:
+                    return <AnimalsStyles backButtonClick={backButtonClick}/>;
+                
+                case 2:
+                    return <AnimalsStyles backButtonClick={backButtonClick}/>;
+
+                case 3:
+                    return <OrderGame backButtonClick={backButtonClick} />;
+
+            }
+        }
+
             return (
                 !showMenu ? 
                 (
-                    <AnimalsStyles backButtonClick={backButtonClick}/>)
+
+                    showGame()
+                )
                 :
                 (<div className={classes.menu}>
                     <h1 style={{fontSize: '-webkit-xxx-large'}}>Bem-vindo!</h1>
                     <h2>Escolhe um jogo:</h2>
                     <Grid container spacing={2} style={{marginTop: '30px'}}>
                         <Button variant="contained" color="primary" style={{marginRight: '30px'}}
-                            onClick={corrAnimalsClick}>
+                            onClick={(e) => gameClick(e, 1)}>
                             Animais
                         </Button>
                         <Button variant="contained" color="primary" style={{marginRight: '30px'}}
-                            onClick={corrAnimalsClick}>
+                            onClick={(e) => gameClick(e, 2)}>
                             Cores
                         </Button>
                         <Button variant="contained" color="primary" style={{marginRight: '30px'}}
-                            onClick={corrAnimalsClick}>
+                            onClick={(e) => gameClick(e, 3)}>
                             Ordenar
                         </Button>
                     </Grid>
