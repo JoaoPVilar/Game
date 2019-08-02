@@ -2,13 +2,14 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Images from '../AnimalsGame/Draggables';
+import Droppables from '../AnimalsGame/Droppables';
 import { DragDropContext } from 'react-beautiful-dnd';
 import data from './data';
-import Ant from './images/ant.jpg';
-import Bridge from './images/bridge.jpg';
-import Car from './images/car.jpg';
-import Mouse from './images/mouse.png';
-import Planet from './images/planet.jpg';
+import Blue from './images/blue.png';
+import Green from './images/green.png';
+import Orange from './images/orange.png';
+import Red from './images/red.png';
+import Yellow from './images/yellow.jpg';
 import Confetti from 'react-confetti';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
@@ -43,16 +44,19 @@ const styles =
 
     
 
-class OrderGame extends React.Component {
+class ColorsGame extends React.Component {
 
     constructor(props) {
         super(props);
 
+        let initialDrops = data.droppables;
         let initialImageIds = data.imageIds;
+        initialDrops = this.shuffle(initialDrops);
         initialImageIds = this.shuffle(initialImageIds);
 
         const initialData = {
             ...data,
+            droppables: initialDrops,
             imageIds: initialImageIds
         }
 
@@ -80,27 +84,38 @@ class OrderGame extends React.Component {
       
         return array;
       }
+        
+
+        isValid = () => {
+            for (let i = 0; i < this.state.imgData.images.length; i++) {
+                if (!this.state.imgData.droppablesIds[i + 1]) {
+                    return false;
+                }
+            }
+    
+            return true;
+        }
 
         getImages = (type) => {
             switch(type) {
-                case 'ant':
-                    return <img src={Ant} alt={type} 
+                case 'blue':
+                    return <img src={Blue} alt={type} 
                     style={{height: '100px', width: '100px'}}/>;
     
-                case 'bridge':
-                    return <img src={Bridge} alt={type}
+                case 'green':
+                    return <img src={Green} alt={type}
                     style={{height: '100px', width: '100px'}}/>;
     
-                case 'car':
-                    return <img src={Car} alt={type}
+                case 'orange':
+                    return <img src={Orange} alt={type}
                     style={{height: '100px', width: '100px'}}/>;
     
-                case 'mouse':
-                    return <img src={Mouse} alt={type} 
+                case 'red':
+                    return <img src={Red} alt={type} 
                     style={{height: '100px', width: '100px'}}/>;
     
-                case 'planet':
-                    return <img src={Planet} alt={type}
+                case 'yellow':
+                    return <img src={Yellow} alt={type}
                     style={{height: '100px', width: '100px'}}/>;
     
                 default:
@@ -115,7 +130,32 @@ class OrderGame extends React.Component {
                 return;
             }
     
-            if (result.source.droppableId === result.destination.droppableId) {
+            const draggedImg = result.draggableId;
+            const droppedId = result.destination.droppableId.split('-')[1];
+    
+            if (draggedImg === droppedId) {
+                const newImageIds = Array.from(this.state.imgData.imageIds);
+                newImageIds.splice(result.source.index, 1);
+    
+                const newDropsIds = Array.from(this.state.imgData.droppablesIds);
+                const dropId = parseInt(result.destination.droppableId.split('-')[2], 10);
+                newDropsIds[dropId] = draggedImg;
+    
+                const newState = {
+                    ...this.state,
+                    imgData: {
+                        ...this.state.imgData,
+                        imageIds: newImageIds,
+                        droppablesIds: newDropsIds
+                    }
+                };
+    
+                this.setState(newState);
+    
+                return;
+            }
+    
+            else if (result.source.droppableId === result.destination.droppableId) {
                 const newImageIds = Array.from(this.state.imgData.imageIds);
                 newImageIds.splice(result.source.index, 1);
                 newImageIds.splice(result.destination.index, 0, result.draggableId);
@@ -132,18 +172,6 @@ class OrderGame extends React.Component {
                 return;
             }
         };
-
-        isValid = () => {
-            const correctOrder = this.state.imgData.correctOrder;
-            const currentOrder = this.state.imgData.imageIds;
-            for (let i = 0; i < correctOrder.length; i++) {
-                if (currentOrder[i] !== correctOrder[i]) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
 
         render() {
 
@@ -164,13 +192,17 @@ class OrderGame extends React.Component {
                     <h1 
                     style={{backgroundColor: 'darkgrey', display: 'inline-block', marginBottom: '30px',
                     marginLeft: '30px'}}>
-                        Ordena as imagens do mais pequeno para o maior!
+                        Corresponde as imagens aos sitios certos!
                     </h1>
                    <DragDropContext onDragEnd={this.onDragEnd} >
                          <div style={{marginLeft: '40px'}}>
-                            <Images imageIds={this.state.imgData.imageIds}
+                            <Images imageSrc={this.state.imgData.images} 
+                                    imageIds={this.state.imgData.imageIds}
                                     getImages={this.getImages}/>
                         </div>
+                        <Droppables drops={this.state.imgData.droppables} 
+                            dropsIds={this.state.imgData.droppablesIds}
+                            getImages={this.getImages}/>
                    </DragDropContext>
                    {this.isValid() ?
                         <Confetti
@@ -188,5 +220,5 @@ class OrderGame extends React.Component {
         
 }
 
-const OrderStyles = withStyles(styles)(OrderGame);
-export default OrderStyles;
+const ColorsStyles = withStyles(styles)(ColorsGame);
+export default ColorsStyles;

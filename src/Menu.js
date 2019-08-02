@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import AnimalsStyles from './AnimalsGame/AnimalsGame';
 import OrderGame from './OrderGame/OrderGame';
+import ColorsGame from './ColorsGame/ColorsGame';
 
 const styles =
     makeStyles(theme => ({
@@ -47,20 +48,18 @@ export default function Menu() {
                     return <AnimalsStyles backButtonClick={backButtonClick}/>;
                 
                 case 2:
-                    return <AnimalsStyles backButtonClick={backButtonClick}/>;
+                    return <ColorsGame backButtonClick={backButtonClick}/>;
 
                 case 3:
                     return <OrderGame backButtonClick={backButtonClick} />;
 
+                default:
+                    return <div />;
             }
         }
 
             return (
-                !showMenu ? 
-                (
-
-                    showGame()
-                )
+                !showMenu ? (showGame())
                 :
                 (<div className={classes.menu}>
                     <h1 style={{fontSize: '-webkit-xxx-large'}}>Bem-vindo!</h1>
