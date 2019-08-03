@@ -77,6 +77,7 @@ class MatchCardsGame extends React.Component {
     ])));
     cardOrder = this.cards;
     prevCardClicked = '';
+    prevIndexClicked = -1;
 
     shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -129,8 +130,12 @@ class MatchCardsGame extends React.Component {
         }
     }
 
-    onCardClick = (event, type) => {
-        if (this.prevCardClicked && this.prevCardClicked === type) {
+    onCardClick = (event, type, index) => {
+        if (this.prevCardClicked 
+            && this.prevIndexClicked 
+            && this.prevIndexClicked != index 
+            && this.prevCardClicked === type) {
+
             let prevCardsArr = this.state.cardsArr;
             const index = prevCardsArr.findIndex((item) => {
                 return item === type;
@@ -142,9 +147,11 @@ class MatchCardsGame extends React.Component {
             }
            
             this.prevCardClicked = '';
+            this.prevIndexClicked = -1;
         }
         else if(this.prevCardClicked === '' || (this.prevCardClicked && this.prevCardClicked !== type)) {
             this.prevCardClicked = type;
+            this.prevIndexClicked = index;
         }
 
     }
@@ -161,7 +168,7 @@ class MatchCardsGame extends React.Component {
           <React.Fragment>
             <Grid item xs={3}>
                 {this.state.cardsArr.includes(img1) ? 
-                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img1)}>
+                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img1, ind)}>
                   {this.getImages(img1)}
                 </Paper>
                 :
@@ -169,7 +176,7 @@ class MatchCardsGame extends React.Component {
             </Grid>
             <Grid item xs={3}>
             {this.state.cardsArr.includes(img2) ? 
-                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img2)}>
+                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img2, ind + 1)}>
                   {this.getImages(img2)}
                 </Paper>
                 :
@@ -177,7 +184,7 @@ class MatchCardsGame extends React.Component {
             </Grid>
             <Grid item xs={3}>
             {this.state.cardsArr.includes(img3) ? 
-                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img3)}>
+                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img3, ind + 2)}>
                   {this.getImages(img3)}
                 </Paper>
                 :
@@ -185,7 +192,7 @@ class MatchCardsGame extends React.Component {
             </Grid>
             <Grid item xs={3}>
             {this.state.cardsArr.includes(img4) ? 
-                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img4)}>
+                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img4, ind + 3)}>
                   {this.getImages(img4)}
                 </Paper>
                 :
