@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Images from './Draggables';
 import Droppables from './Droppables';

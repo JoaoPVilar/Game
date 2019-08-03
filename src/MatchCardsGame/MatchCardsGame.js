@@ -133,7 +133,7 @@ class MatchCardsGame extends React.Component {
     onCardClick = (event, type, index) => {
         if (this.prevCardClicked 
             && this.prevIndexClicked 
-            && this.prevIndexClicked != index 
+            && this.prevIndexClicked !== index 
             && this.prevCardClicked === type) {
 
             let prevCardsArr = this.state.cardsArr;
