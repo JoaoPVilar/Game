@@ -2,9 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import AnimalsStyles from './AnimalsGame/AnimalsGame';
+import AnimalsGame from './AnimalsGame/AnimalsGame';
 import OrderGame from './OrderGame/OrderGame';
 import ColorsGame from './ColorsGame/ColorsGame';
+import MatchCardsGame from './MatchCardsGame/MatchCardsGame';
 
 const styles =
     makeStyles(theme => ({
@@ -45,13 +46,16 @@ export default function Menu() {
         const showGame = () => {
             switch(game) {
                 case 1:
-                    return <AnimalsStyles backButtonClick={backButtonClick}/>;
+                    return <AnimalsGame backButtonClick={backButtonClick} />;
                 
                 case 2:
-                    return <ColorsGame backButtonClick={backButtonClick}/>;
+                    return <ColorsGame backButtonClick={backButtonClick} />;
 
                 case 3:
                     return <OrderGame backButtonClick={backButtonClick} />;
+
+                case 4:
+                    return <MatchCardsGame backButtonClick={backButtonClick} />;
 
                 default:
                     return <div />;
@@ -76,6 +80,10 @@ export default function Menu() {
                         <Button variant="contained" color="primary" style={{marginRight: '30px'}}
                             onClick={(e) => gameClick(e, 3)}>
                             Ordenar
+                        </Button>
+                        <Button variant="contained" color="primary" style={{marginRight: '30px'}}
+                            onClick={(e) => gameClick(e, 4)}>
+                            Corresponde
                         </Button>
                     </Grid>
                 </div>)

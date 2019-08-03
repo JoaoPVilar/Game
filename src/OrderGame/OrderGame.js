@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Images from '../AnimalsGame/Draggables';
 import { DragDropContext } from 'react-beautiful-dnd';
@@ -12,9 +11,9 @@ import Planet from './images/planet.jpg';
 import Confetti from 'react-confetti';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
+import PropTypes from 'prop-types';
 
-const styles =
-    makeStyles(theme => ({
+const styles = theme => ({
         button: {
             marginRight: '30px',
           },
@@ -38,8 +37,25 @@ const styles =
         container: {
             maxWidth: '500px',
             margin: 'auto',
+        },
+        backButton: {
+            width: '60px', 
+            height: '60px', 
+            zIndex: 9999
+        },
+        arrowBack: {
+            width: '60px', 
+            height: '60px', 
+            position: 'relative', 
+            top: '-12px'
+        },
+        title: {
+            backgroundColor: 'darkgrey', 
+            display: 'inline-block', 
+            marginBottom: '30px',
+            marginLeft: '30px'
         }
-    }));
+    });
 
     
 
@@ -82,26 +98,22 @@ class OrderGame extends React.Component {
       }
 
         getImages = (type) => {
+            const {classes} = this.props;
             switch(type) {
                 case 'ant':
-                    return <img src={Ant} alt={type} 
-                    style={{height: '100px', width: '100px'}}/>;
+                    return <img src={Ant} alt={type} className={classes.img}/>;
     
                 case 'bridge':
-                    return <img src={Bridge} alt={type}
-                    style={{height: '100px', width: '100px'}}/>;
+                    return <img src={Bridge} alt={type} className={classes.img}/>;
     
                 case 'car':
-                    return <img src={Car} alt={type}
-                    style={{height: '100px', width: '100px'}}/>;
+                    return <img src={Car} alt={type} className={classes.img}/>;
     
                 case 'mouse':
-                    return <img src={Mouse} alt={type} 
-                    style={{height: '100px', width: '100px'}}/>;
+                    return <img src={Mouse} alt={type} className={classes.img}/>;
     
                 case 'planet':
-                    return <img src={Planet} alt={type}
-                    style={{height: '100px', width: '100px'}}/>;
+                    return <img src={Planet} alt={type} className={classes.img}/>;
     
                 default:
                     return <div />;
@@ -147,25 +159,17 @@ class OrderGame extends React.Component {
 
         render() {
 
+            const {classes} = this.props;
+
             return (
-                    <div style={{position: 'absolute',
-                    margin: 'auto',
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0,
-                    width: '1200px',
-                    height: '-10px'}}>
-                    <IconButton style={{width: '60px', height: '60px', zIndex: 9999}} aria-label="back"
-                        onClick={this.props.backButtonClick}>
-                        <ArrowBack 
-                        style={{width: '60px', height: '60px', position: 'relative', top: '-12px'}} />
-                    </IconButton>
-                    <h1 
-                    style={{backgroundColor: 'darkgrey', display: 'inline-block', marginBottom: '30px',
-                    marginLeft: '30px'}}>
-                        Ordena as imagens do mais pequeno para o maior!
-                    </h1>
+                <div className={classes.div}>
+                <IconButton className={classes.backButton} aria-label="back"
+                    onClick={this.props.backButtonClick}>
+                    <ArrowBack className={classes.arrowBack} />
+                </IconButton>
+                <h1 className={classes.title}>
+                    Ordena as imagens do mais pequeno para o maior!
+                </h1>
                    <DragDropContext onDragEnd={this.onDragEnd} >
                          <div style={{marginLeft: '40px'}}>
                             <Images imageIds={this.state.imgData.imageIds}
@@ -175,7 +179,7 @@ class OrderGame extends React.Component {
                    {this.isValid() ?
                         <Confetti
                             width={1300}
-                            height={800}
+                            height={600}
                             numberOfPieces={400}
                             recycle={false}
                         />
@@ -188,5 +192,7 @@ class OrderGame extends React.Component {
         
 }
 
-const OrderStyles = withStyles(styles)(OrderGame);
-export default OrderStyles;
+OrderGame.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(OrderGame);

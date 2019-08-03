@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
 import Images from '../AnimalsGame/Draggables';
 import Droppables from '../AnimalsGame/Droppables';
@@ -13,9 +12,9 @@ import Yellow from './images/yellow.jpg';
 import Confetti from 'react-confetti';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
+import PropTypes from 'prop-types';
 
-const styles =
-    makeStyles(theme => ({
+const styles = theme => ({
         button: {
             marginRight: '30px',
           },
@@ -39,8 +38,25 @@ const styles =
         container: {
             maxWidth: '500px',
             margin: 'auto',
+        },
+        backButton: {
+            width: '60px', 
+            height: '60px', 
+            zIndex: 9999
+        },
+        arrowBack: {
+            width: '60px', 
+            height: '60px', 
+            position: 'relative', 
+            top: '-12px'
+        },
+        title: {
+            backgroundColor: 'darkgrey', 
+            display: 'inline-block', 
+            marginBottom: '30px',
+            marginLeft: '30px'
         }
-    }));
+    });
 
     
 
@@ -175,25 +191,17 @@ class ColorsGame extends React.Component {
 
         render() {
 
+            const {classes} = this.props;
+
             return (
-                    <div style={{position: 'absolute',
-                    margin: 'auto',
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0,
-                    width: '1200px',
-                    height: '-10px'}}>
-                    <IconButton style={{width: '60px', height: '60px', zIndex: 9999}} aria-label="back"
-                        onClick={this.props.backButtonClick}>
-                        <ArrowBack 
-                        style={{width: '60px', height: '60px', position: 'relative', top: '-12px'}} />
-                    </IconButton>
-                    <h1 
-                    style={{backgroundColor: 'darkgrey', display: 'inline-block', marginBottom: '30px',
-                    marginLeft: '30px'}}>
-                        Corresponde as imagens aos sitios certos!
-                    </h1>
+                <div className={classes.div}>
+                <IconButton className={classes.backButton} aria-label="back"
+                    onClick={this.props.backButtonClick}>
+                    <ArrowBack className={classes.arrowBack} />
+                </IconButton>
+                <h1 className={classes.title}>
+                    Corresponde as imagens aos sitios certos!
+                </h1>
                    <DragDropContext onDragEnd={this.onDragEnd} >
                          <div style={{marginLeft: '40px'}}>
                             <Images imageSrc={this.state.imgData.images} 
@@ -207,7 +215,7 @@ class ColorsGame extends React.Component {
                    {this.isValid() ?
                         <Confetti
                             width={1300}
-                            height={800}
+                            height={600}
                             numberOfPieces={400}
                             recycle={false}
                         />
@@ -220,5 +228,7 @@ class ColorsGame extends React.Component {
         
 }
 
-const ColorsStyles = withStyles(styles)(ColorsGame);
-export default ColorsStyles;
+ColorsGame.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(ColorsGame);
