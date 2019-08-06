@@ -108,7 +108,6 @@ class AnimalsGame extends React.Component {
                     return false;
                 }
             }
-    
             return true;
         }
 

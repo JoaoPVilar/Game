@@ -37,6 +37,13 @@ const styles = theme => ({
                 backgroundColor: '#c9c9c9',
             }
           },
+          clickedPaper: {
+            padding: theme.spacing(1),
+            textAlign: 'center',
+            backgroundColor: '#c9c9c9',
+            width: '120px',
+            height: '120px',
+          },
           correct: {
             padding: theme.spacing(1),
             textAlign: 'center',
@@ -70,6 +77,7 @@ class MatchCardsGame extends React.Component {
         cardsArr: this.shuffle([
             'giraffe', 'bear', 'lion', 'car', 'ant', 'planet'
         ]),
+        clickedCard: -1
     }
 
     cards = this.shuffle(this.shuffle(this.shuffle([
@@ -131,6 +139,7 @@ class MatchCardsGame extends React.Component {
     }
 
     onCardClick = (event, type, index) => {
+
         if (this.prevCardClicked 
             && this.prevIndexClicked 
             && this.prevIndexClicked !== index 
@@ -148,12 +157,33 @@ class MatchCardsGame extends React.Component {
            
             this.prevCardClicked = '';
             this.prevIndexClicked = -1;
+            this.setState({clickedCard: -1});
         }
         else if(this.prevCardClicked === '' || (this.prevCardClicked && this.prevCardClicked !== type)) {
             this.prevCardClicked = type;
             this.prevIndexClicked = index;
+            this.setState({clickedCard: index});
         }
 
+    }
+
+    FormCard(img, ind) {
+
+        const {classes} = this.props;
+
+        return (
+            this.state.clickedCard === ind ?
+            <Paper className={classes.clickedPaper} onClick={(e) => this.onCardClick(e, img, ind)}>
+                  {this.getImages(img)}
+            </Paper>
+            :
+            (this.state.cardsArr.includes(img) ? 
+                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img, ind)}>
+                  {this.getImages(img)}
+                </Paper>
+                :
+            <Paper className={classes.correct} />)
+        );
     }
 
     FormRow(ind) {
@@ -162,41 +192,19 @@ class MatchCardsGame extends React.Component {
         const img3 = this.cardOrder[ind + 2];
         const img4 = this.cardOrder[ind + 3];
 
-        const { classes } = this.props;
-
         return (
           <React.Fragment>
             <Grid item xs={3}>
-                {this.state.cardsArr.includes(img1) ? 
-                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img1, ind)}>
-                  {this.getImages(img1)}
-                </Paper>
-                :
-                <Paper className={classes.correct} />}
+                {this.FormCard(img1, ind)}
             </Grid>
             <Grid item xs={3}>
-            {this.state.cardsArr.includes(img2) ? 
-                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img2, ind + 1)}>
-                  {this.getImages(img2)}
-                </Paper>
-                :
-                <Paper className={classes.correct} />}
+                {this.FormCard(img2, ind + 1)}
             </Grid>
             <Grid item xs={3}>
-            {this.state.cardsArr.includes(img3) ? 
-                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img3, ind + 2)}>
-                  {this.getImages(img3)}
-                </Paper>
-                :
-                <Paper className={classes.correct} />}
+                {this.FormCard(img3, ind + 2)}
             </Grid>
             <Grid item xs={3}>
-            {this.state.cardsArr.includes(img4) ? 
-                <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img4, ind + 3)}>
-                  {this.getImages(img4)}
-                </Paper>
-                :
-                <Paper className={classes.correct} />}
+                {this.FormCard(img4, ind + 3)}
             </Grid>
           </React.Fragment>
         );
