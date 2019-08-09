@@ -4,14 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
-import Giraffe from '../AnimalsGame/images/giraffe.png';
-import Bear from '../AnimalsGame/images/bear.png';
-import Tiger from '../AnimalsGame/images/tiger.jpg';
-import Ant from '../OrderGame/images/ant.jpg';
-import Car from '../OrderGame/images/car.jpg';
-import Planet from '../OrderGame/images/planet.jpg';
 import Confetti from 'react-confetti';
 import PropTypes from 'prop-types';
+import Image from '../Image';
 
 const styles = theme => ({
         root: {
@@ -106,38 +101,6 @@ class MatchCardsGame extends React.Component {
         return array;
       }
 
-    getImages(type) {
-        switch(type) {
-            case 'bear':
-                    return <img src={Bear} alt={'bear'}
-                    style={{height: '100px', width: '100px'}}/>;
-    
-                case 'giraffe':
-                    return <img src={Giraffe} alt={'giraffe'} 
-                    style={{height: '100px', width: '100px'}}/>;
-    
-                case 'lion':
-                    return <img src={Tiger} alt={'lion'}
-                    style={{height: '100px', width: '100px'}}/>;
-
-                case 'ant':
-                    return <img src={Ant} alt={type} 
-                    style={{height: '100px', width: '100px'}}/>;
-        
-                case 'car':
-                    return <img src={Car} alt={type}
-                    style={{height: '100px', width: '100px'}}/>;
-        
-                case 'planet':
-                    return <img src={Planet} alt={type}
-                    style={{height: '100px', width: '100px'}}/>;
-
-            default:
-                return <div />;
-                
-        }
-    }
-
     onCardClick = (event, type, index) => {
 
         if (this.prevCardClicked 
@@ -174,12 +137,12 @@ class MatchCardsGame extends React.Component {
         return (
             this.state.clickedCard === ind ?
             <Paper className={classes.clickedPaper} onClick={(e) => this.onCardClick(e, img, ind)}>
-                  {this.getImages(img)}
+                  <Image img={img} />
             </Paper>
             :
             (this.state.cardsArr.includes(img) ? 
                 <Paper className={classes.paper} onClick={(e) => this.onCardClick(e, img, ind)}>
-                  {this.getImages(img)}
+                    <Image img={img} />
                 </Paper>
                 :
             <Paper className={classes.correct} />)

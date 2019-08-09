@@ -1,19 +1,19 @@
 const data = {
     images: [
         {content: 'cat'},
-        {content: 'lion' },
-        {content: 'giraffe' },
+        {content: 'cow' },
+        {content: 'horse' },
         {content: 'dog' },
-        {content: 'bear' },
+        {content: 'rooster' },
     ],
     droppables: [
-        { img: 'giraffe' },
+        { img: 'horse' },
         { img: 'cat' },
-        { img: 'bear' },
+        { img: 'rooster' },
         { img: 'dog' },
-        { img: 'lion' }
+        { img: 'cow' }
     ],
-    imageIds: ['cat', 'lion', 'giraffe', 'dog', 'bear'],
+    imageIds: ['cat', 'cow', 'horse', 'dog', 'rooster'],
     droppablesIds: []
 }
 

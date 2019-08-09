@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import classNames from 'classnames';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import Card from '@material-ui/core/Card';
+import Image from '../Image';
 
 const styles =
     makeStyles({
@@ -42,7 +43,7 @@ class Images extends React.Component {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
                     <div className={classNames("card")}>
-                        {this.props.getImages(image)}
+                        <Image img={image}/>
                     </div>   
                 </Card>)}
                 

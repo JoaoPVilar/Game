@@ -4,11 +4,6 @@ import Images from '../AnimalsGame/Draggables';
 import Droppables from '../AnimalsGame/Droppables';
 import { DragDropContext } from 'react-beautiful-dnd';
 import data from './data';
-import Blue from './images/blue.png';
-import Green from './images/green.png';
-import Orange from './images/orange.png';
-import Red from './images/red.png';
-import Yellow from './images/yellow.jpg';
 import Confetti from 'react-confetti';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from '@material-ui/core/IconButton';
@@ -112,34 +107,6 @@ class ColorsGame extends React.Component {
             return true;
         }
 
-        getImages = (type) => {
-            switch(type) {
-                case 'blue':
-                    return <img src={Blue} alt={type} 
-                    style={{height: '100px', width: '100px'}}/>;
-    
-                case 'green':
-                    return <img src={Green} alt={type}
-                    style={{height: '100px', width: '100px'}}/>;
-    
-                case 'orange':
-                    return <img src={Orange} alt={type}
-                    style={{height: '100px', width: '100px'}}/>;
-    
-                case 'red':
-                    return <img src={Red} alt={type} 
-                    style={{height: '100px', width: '100px'}}/>;
-    
-                case 'yellow':
-                    return <img src={Yellow} alt={type}
-                    style={{height: '100px', width: '100px'}}/>;
-    
-                default:
-                    return <div />;
-                    
-            }
-        }
-
         onDragEnd = (result) => {
 
             if (!result.destination) {
@@ -205,12 +172,10 @@ class ColorsGame extends React.Component {
                    <DragDropContext onDragEnd={this.onDragEnd} >
                          <div style={{marginLeft: '40px'}}>
                             <Images imageSrc={this.state.imgData.images} 
-                                    imageIds={this.state.imgData.imageIds}
-                                    getImages={this.getImages}/>
+                                    imageIds={this.state.imgData.imageIds}/>
                         </div>
                         <Droppables drops={this.state.imgData.droppables} 
-                            dropsIds={this.state.imgData.droppablesIds}
-                            getImages={this.getImages}/>
+                            dropsIds={this.state.imgData.droppablesIds}/>
                    </DragDropContext>
                    {this.isValid() ?
                         <Confetti

@@ -4,7 +4,6 @@ import Menu from './Menu';
 
 class App extends React.Component {
 
-    
     render() {
 
         return (

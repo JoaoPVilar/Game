@@ -6,6 +6,8 @@ import AnimalsGame from './AnimalsGame/AnimalsGame';
 import OrderGame from './OrderGame/OrderGame';
 import ColorsGame from './ColorsGame/ColorsGame';
 import MatchCardsGame from './MatchCardsGame/MatchCardsGame';
+import PuzzleGame from './PuzzleGame/PuzzleGame';
+import data from './data';
 
 const styles =
     makeStyles(theme => ({
@@ -21,13 +23,17 @@ const styles =
             bottom: 0,
             left: 0,
             width: '500px',
-            height: '300px'
+            height: '300px',
+        },
+        button: {
+            marginRight: '30px',
+            marginTop: '10px'
         }
     }));
 
     
 
-export default function Menu() {
+export default function Menu(props) {
 
     const classes = styles();
 
@@ -57,8 +63,11 @@ export default function Menu() {
                 case 4:
                     return <MatchCardsGame backButtonClick={backButtonClick} />;
 
+                case 5:
+                    return <PuzzleGame backButtonClick={backButtonClick} />;
+
                 default:
-                    return <div />;
+                    return <h1>404: Jogo Nao Existe</h1>;
             }
         }
 
@@ -69,22 +78,14 @@ export default function Menu() {
                     <h1 style={{fontSize: '-webkit-xxx-large'}}>Bem-vindo!</h1>
                     <h2>Escolhe um jogo:</h2>
                     <Grid container spacing={2} style={{marginTop: '30px'}}>
-                        <Button variant="contained" color="primary" style={{marginRight: '30px'}}
-                            onClick={(e) => gameClick(e, 1)}>
-                            Animais
-                        </Button>
-                        <Button variant="contained" color="primary" style={{marginRight: '30px'}}
-                            onClick={(e) => gameClick(e, 2)}>
-                            Cores
-                        </Button>
-                        <Button variant="contained" color="primary" style={{marginRight: '30px'}}
-                            onClick={(e) => gameClick(e, 3)}>
-                            Ordenar
-                        </Button>
-                        <Button variant="contained" color="primary" style={{marginRight: '30px'}}
-                            onClick={(e) => gameClick(e, 4)}>
-                            Corresponde
-                        </Button>
+                        {data.buttons.map((button, index) => {
+                            return (
+                            <Button variant="contained" color="primary" className={classes.button}
+                                onClick={(e) => gameClick(e, (index + 1))}>
+                                {button}
+                            </Button>
+                            );
+                        })}
                     </Grid>
                 </div>)
                 
