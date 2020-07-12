@@ -29,7 +29,7 @@ For younger ages, it allows the development of phonological / visual coordinatio
 For older ages, it allows learning English through association games.
  
 ## Usage
-Access the [site] (https://game-jogo-criancas.web.app/) and choose any of the available games:
+Access the [website](https://game-jogo-criancas.web.app/) and choose any of the available games:
  
 * Animals: Match 5 images of animals to the correct locations. There are two alternatives to the game: (1) for younger ages, correspond an image with the sound of an animal; (2) for older ages, match a picture to the corresponding English word.
  
