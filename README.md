@@ -1,5 +1,5 @@
 # Game - Jogo de Crianças
- Jogo de Crianças dos 3 aos 8 anos.
+ Jogo de Crianças dos 3 aos 8 anos.  
  Para idades menores, permite uma aprendizagem da associação visual com a auditiva, através de jogos como Animais ou Cores. Permite também o raciocínio matemático de ordenação, através do jogo Ordenar.
  Para idades maiores, permite uma aprendizagem do inglês através de jogos de associação.
  
