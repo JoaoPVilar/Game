@@ -1,7 +1,4 @@
-# Jogo de Crianças (Português)
- <br/>
- https://game-jogo-criancas.web.app/
- <br/>
+# Jogo de Crianças (Português) - https://game-jogo-criancas.web.app/
  Jogo de Crianças dos 3 aos 8 anos.  
  Para idades menores, permite um desenvolvimento da coordenação fonológica/visual, através de jogos como "Animais" ou "Cores". Permite também o raciocínio lógico-matemático, através do jogo "Ordenar".  
  Para idades maiores, permite uma aprendizagem do inglês através de jogos de associação.
