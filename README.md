@@ -4,7 +4,7 @@
  Para idades maiores, permite uma aprendizagem do inglês através de jogos de associação.
  
  ## Utilização
- Aceder ao [site](https://game-q1b4.onrender.com/) e escolher qualquer um dos jogos disponíveis:
+ Aceder ao [site](https://game-jogo-criancas.web.app/) e escolher qualquer um dos jogos disponíveis:
  
  * Animais: Corresponder as 5 imagens de animais aos sítios corretos. Existem duas alternativas ao jogo: (1) para idades menores, corresponder a imagem ao som do animal; (2) para idades maiores, corresponder a imagem à palavra correspondente em inglês.
  
