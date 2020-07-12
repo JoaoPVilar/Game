@@ -61,7 +61,7 @@ class Images extends React.Component {
                 {(provided, snapshot) => (
                     <div ref={provided.innerRef}
                         {...provided.droppableProps}>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={2} style={{marginBottom: '80px'}}>
                             {this.loadItems()}
                         </Grid>
                         {provided.placeholder}

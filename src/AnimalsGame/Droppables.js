@@ -21,7 +21,6 @@ import IconButton from '@material-ui/core/IconButton';
 const styles =
     makeStyles({
         card: {
-            marginTop: '150px',
             minWidth: 100,
             width: '10%',
             height: '10%',
@@ -142,7 +141,7 @@ const styles =
 
         return (
 
-            <Grid container spacing={2} style={{marginTop: '-50px', maxHeight: '100px'}}>
+            <Grid container spacing={2} style={{ maxHeight: '100px' }}>
                 {props.drops.map((dropImg, index) => {
                     return (
                         <Droppable droppableId={`droppable-${dropImg.img}-${index + 1}`}

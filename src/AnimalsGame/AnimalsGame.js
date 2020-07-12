@@ -168,7 +168,7 @@ class AnimalsGame extends React.Component {
                 <h1 className={classes.title}>
                     Corresponde as imagens aos sitios certos!
                 </h1>
-                   <DragDropContext onDragEnd={this.onDragEnd} >
+                   <DragDropContext onDragEnd={this.onDragEnd}>
                          <div style={{marginLeft: '40px'}}>
                             <Images imageSrc={this.state.imgData.images} 
                                     imageIds={this.state.imgData.imageIds}/>
